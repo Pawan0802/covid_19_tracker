@@ -1,7 +1,8 @@
 import React from 'react';
 
 //functional component
-const Cards = () => {
+const Cards = (props) => {
+    console.log(props);
     return(
         <h1>Cards</h1>
     )
