@@ -4,7 +4,7 @@ import { CountryPicker } from '../components';
 const url ="https://covid19.mathdro.id/api";
 
 //functional component
-export const fetchData = async () => {
+export const fetchData = async (country) => {
     try {
         // const response = await axios.get(url);
         // return response;
@@ -20,8 +20,15 @@ export const fetchData = async () => {
         // }
         //return modifiedData;
 
+        let changeableUrl = url;
+
+        if(country){
+            changeableUrl = `${url}/countries/${country}`;
+        }
+
+
         //destructuring into destructuring - a better way
-        const { data: {confirmed,recovered,deaths,lastUpdate} } = await axios.get(url);
+        const { data: {confirmed,recovered,deaths,lastUpdate} } = await axios.get(changeableUrl);
 
         const modifiedData = {
             confirmed: confirmed,
@@ -35,6 +42,7 @@ export const fetchData = async () => {
         
 
     } catch (error) {
+        console.log(error);
         
     }
 }

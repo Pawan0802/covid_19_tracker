@@ -8,7 +8,7 @@ class App extends React.Component{
 
     state={
         data:{},
-       
+        country:''
     }
 
     //lifecycle hook to call api
@@ -16,6 +16,15 @@ class App extends React.Component{
         const fetchedData = await fetchData();
         //console.log(data);
         this.setState({data: fetchedData});
+    }
+
+    //change the state of the country
+    handleCountryChange = async (country) => {
+        const fetchedData = await fetchData(country);
+        console.log(fetchedData);
+        //console.log(country);
+        //fetch the data
+        //set the data
     }
 
 
@@ -26,7 +35,7 @@ class App extends React.Component{
         return(
             <div className={styles.container}>
                 <Cards data={data}/>
-                <CountryPicker />
+                <CountryPicker handleCountryChange={this.handleCountryChange}/>
                 <Chart />
             </div>
         )
